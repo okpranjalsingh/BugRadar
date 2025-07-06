@@ -4,3 +4,31 @@ env/
 __pycache__/
 *.log
 .DS_Store
+
+
+# 🐍 Python & Django
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+
+# ⚙️ Virtual Environment
+env/
+venv/
+ENV/
+.venv/
+
+# 🧪 Testing
+.coverage
+pytest_cache/
+
+# 🌐 Django stuff
+db.sqlite3
+staticfiles/
+media/
+
+# 💻 OS specific
+.DS_Store
+
+# 🧑‍💻 VSCode
+.vscode/
