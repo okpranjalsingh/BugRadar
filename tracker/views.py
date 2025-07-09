@@ -20,15 +20,15 @@ class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
-class StatusViewSet(viewsets.ModelViewset):
+class StatusViewSet(viewsets.ModelViewSet):
     queryset = Status.objects.all()
     serializer_class = StatusSerializer
 
 
-class PriorityViewSets(viewsets.ModelViewSet):
+class PriorityViewSet(viewsets.ModelViewSet):
     queryset = Priority.objects.all()
     serializer_class = PrioritySerializer
 
-class BugViewSets(viewsets.ModelViewSet):
+class BugViewSet(viewsets.ModelViewSet):
     queryset = Bug.objects.all()
     serializer_class = BugSerializer
