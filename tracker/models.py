@@ -27,7 +27,7 @@ class Priority(models.Model):
     levels = models.CharField(max_length=50, default="Medium")
 
     def __str__(self):
-        return self.level
+        return self.levels
     
 
 
