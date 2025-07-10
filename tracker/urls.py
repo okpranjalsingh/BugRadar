@@ -4,7 +4,8 @@ from .views import (
     ProjectViewSet,
     StatusViewSet,
     PriorityViewSet,
-    BugViewSet
+    BugViewSet,
+    MyBugViewSet
 )
 
 router = DefaultRouter()
@@ -12,8 +13,9 @@ router.register(r'projects', ProjectViewSet)
 router.register(r'statuses', StatusViewSet)
 router.register(r'priorities', PriorityViewSet)
 router.register(r'bugs', BugViewSet)
+router.register(r'my-bugs', MyBugViewSet, basename='my-bugs' )
 
 
 urlpatterns =[
-    path("api/", include(router.urls))
+    path('', include(router.urls))
 ]
