@@ -15,5 +15,5 @@ router.register(r'bugs', BugViewSet)
 
 
 urlpatterns =[
-    path("api/", include(router.urls))
+    path('', include(router.urls))
 ]
