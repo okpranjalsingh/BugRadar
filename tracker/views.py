@@ -3,11 +3,13 @@ from rest_framework import viewsets, permissions
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from .permissions import IsReporterOrAssigneeOrReadOnly
+
 
 from .models import (
     Project,
     Status,
-    Priority,
+    Priority,   
     Bug,
 )
 from .serializers import (
@@ -16,7 +18,6 @@ from .serializers import (
     ProjectSerializer,
     BugSerializer
 )
-
 
 # Create your views here.
 
@@ -36,6 +37,7 @@ class PriorityViewSet(viewsets.ModelViewSet):
 class BugViewSet(viewsets.ModelViewSet):
     queryset = Bug.objects.all()
     serializer_class = BugSerializer
+    permission_classes = [permissions.IsAuthenticated, IsReporterOrAssigneeOrReadOnly]
 
 
 
@@ -43,7 +45,7 @@ class BugViewSet(viewsets.ModelViewSet):
 
 class MyBugViewSet(viewsets.ReadOnlyModelViewSet):
     '''
-    shows only bug assigned to logged-in users only.
+      shows only bug assigned to logged-in users only.
     '''
     serializer_class = BugSerializer
     permission_classes = [permissions.IsAuthenticated]

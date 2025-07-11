@@ -30,7 +30,7 @@ class Priority(models.Model):
         return self.levels
     
 
-
+   
 class Bug(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
     title = models.CharField(max_length=20)
