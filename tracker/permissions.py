@@ -20,5 +20,5 @@ class IsReporterOrAssigneeOrReadOnly(permissions.BasePermission):
                 #put/patch = Reporter or Assigned developer
                 return (
                         obj.reported_by == request.user or 
-                        obj.assigned_by == request.user
+                        obj.assigned_to == request.user
                 )
