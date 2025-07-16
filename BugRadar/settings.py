@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'tracker',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'django_filters',
+
 ]
 
 MIDDLEWARE = [
@@ -132,5 +134,8 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',  # ✅ for HTML interface
+    ],
+    'DEFAULT_FILTER_BACKENDS':[
+        'django_filters.rest_framework.DjangoFilterBackend'
     ],
 }

@@ -5,6 +5,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from .permissions import IsReporterOrAssigneeOrReadOnly
 from rest_framework.exceptions import PermissionDenied
+from tracker.permissions import IsReporterOrAssigneeOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 
 
@@ -39,7 +42,10 @@ class PriorityViewSet(viewsets.ModelViewSet):
 class BugViewSet(viewsets.ModelViewSet):
     queryset = Bug.objects.all()
     serializer_class = BugSerializer
-    permission_classes = [permissions.IsAuthenticated, IsReporterOrAssigneeOrReadOnly]
+    permission_classes = [IsAuthenticated, IsReporterOrAssigneeOrReadOnly]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['status', 'priority', 'assigned_to'] 
+
     
     
     def perform_update(self, serializer):
