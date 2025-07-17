@@ -5,7 +5,9 @@ from .views import (
     StatusViewSet,
     PriorityViewSet,
     BugViewSet,
-    MyBugViewSet
+    MyBugViewSet,
+    BugCommentViewset,
+    BugAttachmentViewSet
 )
 
 router = DefaultRouter()
@@ -14,6 +16,9 @@ router.register(r'statuses', StatusViewSet)
 router.register(r'priorities', PriorityViewSet)
 router.register(r'bugs', BugViewSet)
 router.register(r'my-bugs', MyBugViewSet, basename='my-bugs' )
+router.register('bug-comments', BugCommentViewset),
+router.register(r'attachments', BugAttachmentViewSet)
+
 
 
 urlpatterns =[
