@@ -132,8 +132,6 @@ class BugCommentViewset(viewsets.ModelViewSet):
         serializer.save(author=self.request.user)
 
 
-
-
 class BugAttachmentViewSet(viewsets.ModelViewSet):
     queryset = BugAttachment.objects.all()
     permission_classes = [IsAuthenticated]
