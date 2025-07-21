@@ -8,8 +8,6 @@ from django.db import models
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-
-
 from .models import (
     Project,
     Status,
@@ -17,8 +15,8 @@ from .models import (
     Bug,
     BugComment,
     BugAttachment
-    
 )
+
 from .serializers import (
     PrioritySerializer,
     StatusSerializer,
@@ -53,6 +51,9 @@ class BugViewSet(viewsets.ModelViewSet):
         if user.is_superuser:
             return Bug.objects.all()
         return Bug.objects.filter(models.Q(assigned_to=user) | models.Q(reported_by=user))
+
+    def perform_create(self, serializer):
+        serializer.save(reported_by=self.request.user)
 
     def perform_update(self, serializer):
         bug = self.get_object()
@@ -127,7 +128,6 @@ class BugCommentViewset(viewsets.ModelViewSet):
     serializer_class = BugCommentSerializer
     permission_classes = [IsAuthenticated]
 
-
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
@@ -138,5 +138,4 @@ class BugAttachmentViewSet(viewsets.ModelViewSet):
     serializer_class = BugAttachmentSerializer
 
     def perform_create(self, serializer):
-        serializer.save(uploded_by = self.request.user)
-        
+        serializer.save(uploded_by=self.request.user)

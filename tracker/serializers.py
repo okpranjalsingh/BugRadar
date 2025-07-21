@@ -29,9 +29,17 @@ class PrioritySerializer(serializers.ModelSerializer):
 
 
 class BugSerializer(serializers.ModelSerializer):
+    reported_by = serializers.ReadOnlyField(source='reported_by.username')
+    assigned_to = serializers.SlugRelatedField(slug_field='username', queryset=User.objects.all(), allow_null=True, required=False)
+    assigned_by = serializers.ReadOnlyField(source='assigned_by.username')
+    status = serializers.SlugRelatedField(slug_field='name', queryset=Status.objects.all())
+    priority = serializers.SlugRelatedField(slug_field='levels', queryset=Priority.objects.all())
+    project = serializers.SlugRelatedField(slug_field='name', queryset=Project.objects.all())
+
     class Meta:
         model = Bug
-        fields= '__all__'
+        fields = '__all__'
+        read_only_fields = ['reported_by', 'assigned_by', 'created_at', 'updated_at']
 
 
 
