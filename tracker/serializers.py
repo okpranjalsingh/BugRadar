@@ -58,3 +58,5 @@ class BugAttachmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = BugAttachment
         fields = '__all__'
+
+        
